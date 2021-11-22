@@ -1,0 +1,16 @@
+led_display.c:31:6:display7SEG	16	static
+led_display.c:79:6:displayLedTopBottom	16	static
+led_display.c:101:6:displayLedLeftRight	16	static
+led_display.c:123:6:displayTrafficLight_LeftRight	8	static
+led_display.c:143:6:displayTrafficLight	8	static
+led_display.c:177:6:clearAllLedEdit	8	static
+led_display.c:184:6:clearAllLedTraffic	8	static
+led_display.c:197:6:DisplayMain	8	static
+led_display.c:236:6:DisplayMainEdit	16	static
+led_display.c:263:5:getTimeRed	4	static
+led_display.c:267:5:getTimeGreen	4	static
+led_display.c:271:5:getTimeAmber	4	static
+led_display.c:275:6:setTimeRed	16	static
+led_display.c:279:6:setTimeGreen	16	static
+led_display.c:283:6:setTimeAmber	16	static
+led_display.c:287:6:setTime	4	static

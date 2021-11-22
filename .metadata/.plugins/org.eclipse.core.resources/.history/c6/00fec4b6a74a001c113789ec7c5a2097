@@ -1,0 +1,66 @@
+/*
+ * led_display.c
+ *
+ *  Created on: Nov 21, 2021
+ *      Author: HH
+ */
+#include "main.h"
+int time_RED = 5;
+int time_GREEN = 9;
+int time_AMBER = 3;
+
+int time_RED_edit = 5;
+int time_GREEN_edit = 9;
+int time_AMBER_edit = 3;
+
+void display7SEG(int counter){
+   	  switch(counter){
+   	  case 0:
+   		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_13, 1);
+   		  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_14, 0);
+   		  break;
+   	  case 1:
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7|GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13, 1);
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_14, 0);
+   	  	break;
+   	  case 2:
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9|GPIO_PIN_12, 1);
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_13|GPIO_PIN_14, 0);
+   	  	break;
+   	  case 3:
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11|GPIO_PIN_12, 1);
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_13|GPIO_PIN_14, 0);
+   	  	break;
+   	  case 4:
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7|GPIO_PIN_10|GPIO_PIN_11, 1);
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14, 0);
+   	  	break;
+   	  case 5:
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8|GPIO_PIN_11, 1);
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14, 0);
+   	  	break;
+   	  case 6:
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, 1);
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14, 0);
+   	  	break;
+   	  case 7:
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13, 1);
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_14, 0);
+   	  	break;
+   	  case 8:
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14, 0);
+   	  	break;
+   	  case 9:
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_11, 1);
+   	  	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14, 0);
+   	  	break;
+   	  default:
+   		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13|GPIO_PIN_14, 1);
+   		break;
+
+   	  }
+}
+
+void blinking_led(){
+
+}

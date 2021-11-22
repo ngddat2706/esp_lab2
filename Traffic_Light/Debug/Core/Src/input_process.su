@@ -1,0 +1,4 @@
+input_process.c:24:6:fsm_for_input_processing	8	static
+input_process.c:86:6:increases_time	4	static
+input_process.c:109:6:auto_increases_time	8	static
+input_process.c:117:6:blinking_led	8	static

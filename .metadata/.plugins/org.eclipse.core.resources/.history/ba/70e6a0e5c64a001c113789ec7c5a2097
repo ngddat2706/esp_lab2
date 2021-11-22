@@ -1,0 +1,69 @@
+/*
+ * input_process.c
+ *
+ *  Created on: Nov 21, 2021
+ *      Author: HH
+ */
+#include "main.h"
+#include "led_display.h"
+#include "button_debouncing.h"
+
+enum ButtonMode { MODE_1 , MODE_2 , MODE_3, MODE_4} ;
+enum ButtonMode buttonMode = MODE_1 ;
+
+int time_RED_edit = 5;
+int time_GREEN_edit = 9;
+int time_AMBER_edit = 3;
+
+void fsm_for_input_processing(void){
+	switch(buttonMode){
+	case MODE_1:
+		if(is_button1_pressed()){
+			buttonMode = MODE_2;
+		}
+		break;
+	case MODE_2:
+		if(is_button1_pressed()){
+			buttonMode = MODE_3;
+		}
+
+		break;
+	case MODE_3:
+		if(is_button1_pressed()){
+			buttonMode = MODE_4;
+		}
+		break;
+	case MODE_4:
+		if(is_button1_pressed()){
+			buttonMode = MODE_1;
+		}
+		break;
+	}
+}
+
+unsigned char getMode(void){
+	return buttonMode;
+}
+
+void increases_time(void){
+	switch(buttonMode){
+		case MODE_2:
+			time_RED_edit++;
+			if(time_RED_edit >= 99){
+				time_RED_edit = 0;
+			}
+			break;
+		case MODE_3:
+			time_GREEN_edit++;
+			if(time_GREEN_edit >= 99){
+				time_GREEN_edit = 0;
+			}
+			break;
+		case MODE_4:
+			time_AMBER_edit++;
+			if(time_AMBER_edit >= 99){
+				time_AMBER_edit = 0;
+			}
+			break;
+		}
+}

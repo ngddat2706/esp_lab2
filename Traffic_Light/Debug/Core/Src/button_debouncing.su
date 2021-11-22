@@ -1,0 +1,6 @@
+button_debouncing.c:21:6:button_reading	24	static
+button_debouncing.c:42:15:get_button2_value	4	static
+button_debouncing.c:46:15:get_flag_for_button2_press_1s	4	static
+button_debouncing.c:50:5:is_button1_pressed	8	static
+button_debouncing.c:61:5:is_button3_pressed	8	static
+button_debouncing.c:72:5:is_button2_pressed	8	static

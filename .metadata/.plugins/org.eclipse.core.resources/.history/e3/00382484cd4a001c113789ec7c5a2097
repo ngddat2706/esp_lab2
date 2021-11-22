@@ -1,0 +1,112 @@
+/*
+ * input_process.c
+ *
+ *  Created on: Nov 21, 2021
+ *      Author: HH
+ */
+#include "main.h"
+#include "led_display.h"
+#include "button_debouncing.h"
+
+#define TIME_AUTO_INCREASES		100
+#define TIME_BLINKING			100
+
+enum ButtonMode { MODE_1 , MODE_2 , MODE_3, MODE_4} ;
+enum ButtonMode buttonMode = MODE_1 ;
+
+int time_RED_edit;
+int time_GREEN_edit;
+int time_AMBER_edit;
+
+int timeAutoIncreases = 0;
+
+void fsm_for_input_processing(void){
+	switch(buttonMode){
+	case MODE_1:
+		if(is_button1_pressed()){
+			time_RED_edit = time_RED;
+			time_GREEN_edit = time_GREEN;
+			time_AMBER_edit = time_AMBER;
+			buttonMode = MODE_2;
+		}
+		else{
+			DisplayMain();
+		}
+		break;
+	case MODE_2:
+		if(is_button1_pressed()){
+			buttonMode = MODE_3;
+		}
+		else if( get_flag_for_button2_press_1s()){
+			auto_increases_time();
+		}else if(get_button2_value() == GPIO_PIN_SET){
+			increases_time();
+		}else if(is_button3_pressed()){
+			time_RED = time_RED_edit;
+		}
+		DisplayMainEdit(time_RED_edit, 2);
+		break;
+	case MODE_3:
+		if(is_button1_pressed()){
+			buttonMode = MODE_4;
+		}else if( get_flag_for_button2_press_1s()){
+			auto_increases_time();
+		}else if(get_button2_value() == GPIO_PIN_SET){
+			increases_time();
+		}else if(is_button3_pressed()){
+			time_GREEN = time_GREEN_edit;
+		}
+		DisplayMainEdit(time_GREEN_edit, 3);
+		break;
+	case MODE_4:
+		if(is_button1_pressed()){
+			time_RED_LeftRight 	 = time_RED;
+			time_GREEN_LeftRight = time_GREEN;
+			time_AMBER_LeftRight = time_AMBER;
+			time_RED_TopBottom 	 = time_RED;
+			time_GREEN_TopBottom = time_GREEN;
+			time_AMBER_TopBottom = time_AMBER;
+			buttonMode = MODE_1;
+
+		}else if( get_flag_for_button2_press_1s()){
+			auto_increases_time();
+		}else if(get_button2_value() == GPIO_PIN_SET){
+			increases_time();
+		}else if(is_button3_pressed()){
+			time_AMBER = time_AMBER_edit;
+		}
+		DisplayMainEdit(time_AMBER_edit, 4);
+		break;
+	}
+}
+
+void increases_time(void){
+	switch(buttonMode){
+		case MODE_2:
+			time_RED_edit++;
+			if(time_RED_edit >= 99){
+				time_RED_edit = 0;
+			}
+			break;
+		case MODE_3:
+			time_GREEN_edit++;
+			if(time_GREEN_edit >= 99){
+				time_GREEN_edit = 0;
+			}
+			break;
+		case MODE_4:
+			time_AMBER_edit++;
+			if(time_AMBER_edit >= 99){
+				time_AMBER_edit = 0;
+			}
+			break;
+		}
+}
+
+void auto_increases_time(void){
+	if(timeAutoIncreases >= TIME_AUTO_INCREASES){
+		increases_time();
+		timeAutoIncreases = 0;
+	}
+	timeAutoIncreases++;
+}

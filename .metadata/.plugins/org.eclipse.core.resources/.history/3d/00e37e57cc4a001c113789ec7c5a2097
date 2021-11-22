@@ -1,0 +1,20 @@
+/*
+ * input_process.h
+ *
+ *  Created on: Nov 21, 2021
+ *      Author: HH
+ */
+
+#ifndef INC_INPUT_PROCESS_H_
+#define INC_INPUT_PROCESS_H_
+
+void fsm_for_input_processing(void);
+void increases_time(void);
+void auto_increases_time(void);
+void button_reading(void);
+GPIO_PinState get_button2_value();
+unsigned char get_flag_for_button2_press_1s();
+int is_button1_pressed();
+int is_button3_pressed();
+
+#endif /* INC_INPUT_PROCESS_H_ */

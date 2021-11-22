@@ -1,0 +1,42 @@
+/*
+ * input_process.c
+ *
+ *  Created on: Nov 21, 2021
+ *      Author: HH
+ */
+#include "main.h"
+#include "led_display.h"
+#include "button_debouncing.h"
+
+enum ButtonMode { MODE_1 , MODE_2 , MODE_3, MODE_4} ;
+enum ButtonMode buttonMode = MODE_1 ;
+
+void fsm_for_input_processing(void){
+	switch(buttonMode){
+	case MODE_1:
+		if(is_button1_pressed()){
+			buttonMode = MODE_2;
+		}
+		break;
+	case MODE_2:
+		if(is_button1_pressed()){
+			buttonMode = MODE_3;
+		}
+		break;
+	case MODE_3:
+		if(is_button1_pressed()){
+			buttonMode = MODE_4;
+		}
+		break;
+	case MODE_4:
+		if(is_button1_pressed()){
+			buttonMode = MODE_1;
+		}
+		break;
+	}
+}
+
+unsigned char getMode(void){
+	return buttonMode;
+}
+

@@ -1,0 +1,20 @@
+21:20:14 **** Incremental Build of configuration Debug for project Traffic_Light ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/led_display.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/led_display.d" -MT"Core/Src/led_display.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/led_display.o"
+arm-none-eabi-gcc -o "Traffic_Light.elf" @"objects.list"   -mcpu=cortex-m3 -T"F:\MyFile\VXL\lab\lab3\Lab3_v2\Traffic_Light\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Traffic_Light.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Traffic_Light.elf
+ 
+arm-none-eabi-size   Traffic_Light.elf 
+arm-none-eabi-objdump -h -S  Traffic_Light.elf  > "Traffic_Light.list"
+arm-none-eabi-objcopy  -O ihex  Traffic_Light.elf  "Traffic_Light.hex"
+arm-none-eabi-objcopy  -O binary  Traffic_Light.elf  "Traffic_Light.bin"
+   text	   data	    bss	    dec	    hex	filename
+  10188	     72	   1696	  11956	   2eb4	Traffic_Light.elf
+Finished building: default.size.stdout
+ 
+Finished building: Traffic_Light.bin
+Finished building: Traffic_Light.hex
+ 
+ 
+Finished building: Traffic_Light.list
+ 
